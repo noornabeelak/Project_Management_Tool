@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <span>Project Management</span>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-secondary">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="user-profile">
+                        <i class="fas fa-user-circle user-icon"></i>
+                        <span class="user-name">Noor Nabeela</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <div class="dashboard-layout">
+                <!-- Teams Section -->
+                <div class="teams-section">
+                    <div class="teams-grid">
+                        <!-- Team Card 1 -->
+                        <div class="team-card" data-team="frontend" onclick="openTeamDetails('frontend')">
+                            <div class="card-decoration top-left"></div>
+                            <div class="card-decoration top-right"></div>
+                            <div class="card-decoration bottom-left"></div>
+                            <div class="card-decoration bottom-right"></div>
+                            
+                            <div class="team-card-header">
+                                <div class="team-info">
+                                    <h3 class="team-name">Frontend Development</h3>
+                                </div>
+                                <div class="team-status">
+                                    <select class="status-dropdown" onchange="updateStatus('frontend', this.value)" onclick="event.stopPropagation()">
+                                        <option value="not-started">NOT STARTED</option>
+                                        <option value="in-progress" selected>IN PROGRESS</option>
+                                        <option value="completed">COMPLETED</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-section">
+                                <div class="progress-header">
+                                    <span class="progress-label">Progress</span>
+                                    <span class="progress-percentage">75%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                            </div>
+
+                            <div class="team-overview">
+                                <h4 class="overview-title">Team Overview</h4>
+                                <div class="recent-activity">
+                                    <div class="activity-item">
+                                        <span>Priya completed authentication system</span>
+                                        <span class="activity-time">2h ago</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span>Arjun working on UI components</span>
+                                        <span class="activity-time">4h ago</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span>Priya fixed security vulnerabilities</span>
+                                        <span class="activity-time">1d ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-tasks-section">
+                                <div class="available-tasks">
+                                    <h4 class="section-title">
+                                        <i class="fas fa-list"></i>
+                                        Available Tasks
+                                    </h4>
+                                    <div class="task-items">
+                                        <div class="task-item" draggable="true" data-task="login-system">
+                                            <div class="task-icon">
+                                                <i class="fas fa-sign-in-alt"></i>
+                                            </div>
+                                            <div class="task-details">
+                                                <span class="task-name">Implement Login System</span>
+                                                <span class="task-priority high">High Priority</span>
+                                            </div>
+                                        </div>
+                                        <div class="task-item" draggable="true" data-task="ui-components">
+                                            <div class="task-icon">
+                                                <i class="fas fa-palette"></i>
+                                            </div>
+                                            <div class="task-details">
+                                                <span class="task-name">Create UI Components</span>
+                                                <span class="task-priority medium">Medium Priority</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="team-assignment">
+                                    <h4 class="section-title">
+                                        <i class="fas fa-users"></i>
+                                        Team Assignment
+                                    </h4>
+                                    <div class="team-members">
+                                        <div class="member-container" data-member="priyasharma">
+                                            <div class="member-info">
+                                                <div class="member-avatar">PS</div>
+                                                <div class="member-details">
+                                                    <span class="member-name">Priya Sharma</span>
+                                                    <span class="member-role">Frontend Developer</span>
+                                                </div>
+                                            </div>
+                                            <div class="task-drop-zone" data-member="priyasharma">
+                                                <span class="drop-hint">Drop tasks here</span>
+                                            </div>
+                                        </div>
+                                        <div class="member-container" data-member="arjunkumar">
+                                            <div class="member-info">
+                                                <div class="member-avatar">AK</div>
+                                                <div class="member-details">
+                                                    <span class="member-name">Arjun Kumar</span>
+                                                    <span class="member-role">UI Developer</span>
+                                                </div>
+                                            </div>
+                                            <div class="task-drop-zone" data-member="arjunkumar">
+                                                <span class="drop-hint">Drop tasks here</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Team Card 2 -->
+                        <div class="team-card" data-team="backend" onclick="openTeamDetails('backend')">
+                            <div class="card-decoration top-left"></div>
+                            <div class="card-decoration top-right"></div>
+                            <div class="card-decoration bottom-left"></div>
+                            <div class="card-decoration bottom-right"></div>
+                            
+                            <div class="team-card-header">
+                                <div class="team-info">
+                                    <h3 class="team-name">Backend API</h3>
+                                </div>
+                                <div class="team-status">
+                                    <select class="status-dropdown" onchange="updateStatus('backend', this.value)" onclick="event.stopPropagation()">
+                                        <option value="not-started" selected>NOT STARTED</option>
+                                        <option value="in-progress">IN PROGRESS</option>
+                                        <option value="completed">COMPLETED</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-section">
+                                <div class="progress-header">
+                                    <span class="progress-label">Progress</span>
+                                    <span class="progress-percentage">25%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                            </div>
+
+                            <div class="team-overview">
+                                <h4 class="overview-title">Team Overview</h4>
+                                <div class="recent-activity">
+                                    <div class="activity-item">
+                                        <span>Rajesh completed database schema</span>
+                                        <span class="activity-time">1h ago</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span>Kavya working on API endpoints</span>
+                                        <span class="activity-time">3h ago</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span>Rajesh reviewed security protocols</span>
+                                        <span class="activity-time">6h ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-tasks-section">
+                                <div class="available-tasks">
+                                    <h4 class="section-title">
+                                        <i class="fas fa-list"></i>
+                                        Available Tasks
+                                    </h4>
+                                    <div class="task-items">
+                                        <div class="task-item" draggable="true" data-task="database-schema">
+                                            <div class="task-icon">
+                                                <i class="fas fa-database"></i>
+                                            </div>
+                                            <div class="task-details">
+                                                <span class="task-name">Setup Database Schema</span>
+                                                <span class="task-priority high">High Priority</span>
+                                            </div>
+                                        </div>
+                                        <div class="task-item" draggable="true" data-task="api-endpoints">
+                                            <div class="task-icon">
+                                                <i class="fas fa-plug"></i>
+                                            </div>
+                                            <div class="task-details">
+                                                <span class="task-name">Create API Endpoints</span>
+                                                <span class="task-priority high">High Priority</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="team-assignment">
+                                    <h4 class="section-title">
+                                        <i class="fas fa-users"></i>
+                                        Team Assignment
+                                    </h4>
+                                    <div class="team-members">
+                                        <div class="member-container" data-member="rajeshsingh">
+                                            <div class="member-info">
+                                                <div class="member-avatar">RS</div>
+                                                <div class="member-details">
+                                                    <span class="member-name">Rajesh Singh</span>
+                                                    <span class="member-role">Backend Developer</span>
+                                                </div>
+                                            </div>
+                                            <div class="task-drop-zone" data-member="rajeshsingh">
+                                                <span class="drop-hint">Drop tasks here</span>
+                                            </div>
+                                        </div>
+                                        <div class="member-container" data-member="kavyapatel">
+                                            <div class="member-info">
+                                                <div class="member-avatar">KP</div>
+                                                <div class="member-details">
+                                                    <span class="member-name">Kavya Patel</span>
+                                                    <span class="member-role">API Developer</span>
+                                                </div>
+                                            </div>
+                                            <div class="task-drop-zone" data-member="kavyapatel">
+                                                <span class="drop-hint">Drop tasks here</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Team Card 3 -->
+                        <div class="team-card" data-team="design" onclick="openTeamDetails('design')">
+                            <div class="card-decoration top-left"></div>
+                            <div class="card-decoration top-right"></div>
+                            <div class="card-decoration bottom-left"></div>
+                            <div class="card-decoration bottom-right"></div>
+                            
+                            <div class="team-card-header">
+                                <div class="team-info">
+                                    <h3 class="team-name">UI/UX Design</h3>
+                                </div>
+                                <div class="team-status">
+                                    <select class="status-dropdown" onchange="updateStatus('design', this.value)" onclick="event.stopPropagation()">
+                                        <option value="not-started">NOT STARTED</option>
+                                        <option value="in-progress">IN PROGRESS</option>
+                                        <option value="completed" selected>COMPLETED</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-section">
+                                <div class="progress-header">
+                                    <span class="progress-label">Progress</span>
+                                    <span class="progress-percentage">100%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                            </div>
+
+                            <div class="team-overview">
+                                <h4 class="overview-title">Team Overview</h4>
+                                <div class="recent-activity">
+                                    <div class="activity-item">
+                                        <span>Ananya completed design system</span>
+                                        <span class="activity-time">30m ago</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span>Vikram finished responsive layouts</span>
+                                        <span class="activity-time">2h ago</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span>Ananya completed design handoff</span>
+                                        <span class="activity-time">4h ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-tasks-section">
+                                <div class="available-tasks">
+                                    <h4 class="section-title">
+                                        <i class="fas fa-list"></i>
+                                        Available Tasks
+                                    </h4>
+                                    <div class="task-items">
+                                        <div class="task-item" draggable="true" data-task="user-interface">
+                                            <div class="task-icon">
+                                                <i class="fas fa-palette"></i>
+                                            </div>
+                                            <div class="task-details">
+                                                <span class="task-name">Design User Interface</span>
+                                                <span class="task-priority low">Low Priority</span>
+                                            </div>
+                                        </div>
+                                        <div class="task-item" draggable="true" data-task="wireframes">
+                                            <div class="task-icon">
+                                                <i class="fas fa-drafting-compass"></i>
+                                            </div>
+                                            <div class="task-details">
+                                                <span class="task-name">Create Wireframes</span>
+                                                <span class="task-priority medium">Medium Priority</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="team-assignment">
+                                    <h4 class="section-title">
+                                        <i class="fas fa-users"></i>
+                                        Team Assignment
+                                    </h4>
+                                    <div class="team-members">
+                                        <div class="member-container" data-member="ananyamehta">
+                                            <div class="member-info">
+                                                <div class="member-avatar">AM</div>
+                                                <div class="member-details">
+                                                    <span class="member-name">Ananya Mehta</span>
+                                                    <span class="member-role">UI Designer</span>
+                                                </div>
+                                            </div>
+                                            <div class="task-drop-zone" data-member="ananyamehta">
+                                                <span class="drop-hint">Drop tasks here</span>
+                                            </div>
+                                        </div>
+                                        <div class="member-container" data-member="vikramjoshi">
+                                            <div class="member-info">
+                                                <div class="member-avatar">VJ</div>
+                                                <div class="member-details">
+                                                    <span class="member-name">Vikram Joshi</span>
+                                                    <span class="member-role">UX Designer</span>
+                                                </div>
+                                            </div>
+                                            <div class="task-drop-zone" data-member="vikramjoshi">
+                                                <span class="drop-hint">Drop tasks here</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Team Card 4 -->
+                        <div class="team-card" data-team="testing" onclick="openTeamDetails('testing')">
+                            <div class="card-decoration top-left"></div>
+                            <div class="card-decoration top-right"></div>
+                            <div class="card-decoration bottom-left"></div>
+                            <div class="card-decoration bottom-right"></div>
+                            
+                            <div class="team-card-header">
+                                <div class="team-info">
+                                    <h3 class="team-name">Testing & QA</h3>
+                                </div>
+                                <div class="team-status">
+                                    <select class="status-dropdown" onchange="updateStatus('testing', this.value)" onclick="event.stopPropagation()">
+                                        <option value="not-started">NOT STARTED</option>
+                                        <option value="in-progress" selected>IN PROGRESS</option>
+                                        <option value="completed">COMPLETED</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-section">
+                                <div class="progress-header">
+                                    <span class="progress-label">Progress</span>
+                                    <span class="progress-percentage">60%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                            </div>
+
+                            <div class="team-overview">
+                                <h4 class="overview-title">Team Overview</h4>
+                                <div class="recent-activity">
+                                    <div class="activity-item">
+                                        <span>Deepika setup automated testing</span>
+                                        <span class="activity-time">45m ago</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span>Suresh analyzing test coverage</span>
+                                        <span class="activity-time">1h ago</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span>Deepika established QA protocols</span>
+                                        <span class="activity-time">3h ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-tasks-section">
+                                <div class="available-tasks">
+                                    <h4 class="section-title">
+                                        <i class="fas fa-list"></i>
+                                        Available Tasks
+                                    </h4>
+                                    <div class="task-items">
+                                        <div class="task-item" draggable="true" data-task="bug-testing">
+                                            <div class="task-icon">
+                                                <i class="fas fa-bug"></i>
+                                            </div>
+                                            <div class="task-details">
+                                                <span class="task-name">Bug Testing</span>
+                                                <span class="task-priority high">High Priority</span>
+                                            </div>
+                                        </div>
+                                        <div class="task-item" draggable="true" data-task="performance-test">
+                                            <div class="task-icon">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                            </div>
+                                            <div class="task-details">
+                                                <span class="task-name">Performance Testing</span>
+                                                <span class="task-priority medium">Medium Priority</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="team-assignment">
+                                    <h4 class="section-title">
+                                        <i class="fas fa-users"></i>
+                                        Team Assignment
+                                    </h4>
+                                    <div class="team-members">
+                                        <div class="member-container" data-member="deepikareddy">
+                                            <div class="member-info">
+                                                <div class="member-avatar">DR</div>
+                                                <div class="member-details">
+                                                    <span class="member-name">Deepika Reddy</span>
+                                                    <span class="member-role">QA Engineer</span>
+                                                </div>
+                                            </div>
+                                            <div class="task-drop-zone" data-member="deepikareddy">
+                                                <span class="drop-hint">Drop tasks here</span>
+                                            </div>
+                                        </div>
+                                        <div class="member-container" data-member="sureshnair">
+                                            <div class="member-info">
+                                                <div class="member-avatar">SN</div>
+                                                <div class="member-details">
+                                                    <span class="member-name">Suresh Nair</span>
+                                                    <span class="member-role">Test Analyst</span>
+                                                </div>
+                                            </div>
+                                            <div class="task-drop-zone" data-member="sureshnair">
+                                                <span class="drop-hint">Drop tasks here</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Team Details Modal -->
+    <div id="team-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Team Details</h2>
+                <button class="modal-close" onclick="closeTeamModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-layout">
+                    <!-- Top Section: Drag & Drop and Calendar -->
+                    <div class="modal-top-section">
+                        <div class="detail-section drag-drop-section">
+                            <h3><i class="fas fa-tasks"></i> Task Assignment</h3>
+                            <div class="drag-drop-container">
+                                <div class="task-pool">
+                                    <h4>Available Tasks</h4>
+                                    <div class="task-items" id="modal-task-items">
+                                        <!-- Tasks will be populated here -->
+                                    </div>
+                                </div>
+                                <div class="team-assignment">
+                                    <h4>Team Members</h4>
+                                    <div class="team-members" id="modal-team-members">
+                                        <!-- Team members will be populated here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-section calendar-section">
+                            <h3><i class="fas fa-calendar-alt"></i> Task Calendar</h3>
+                            <div class="calendar-container">
+                                <div class="calendar-header">
+                                    <button class="calendar-nav" onclick="changeMonth(-1)">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <span class="current-month">December 2024</span>
+                                    <button class="calendar-nav" onclick="changeMonth(1)">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                <div class="calendar-grid" id="calendar-grid">
+                                    <!-- Calendar will be generated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom Section: Horizontal Timeline -->
+                    <div class="detail-section timeline-section">
+                        <h3><i class="fas fa-route"></i> Project Timeline</h3>
+                        <div class="horizontal-timeline" id="horizontal-timeline">
+                            <!-- Timeline will be generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
